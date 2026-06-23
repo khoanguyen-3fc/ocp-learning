@@ -1,2 +1,52 @@
-# ocp-learning
-Learn to build and render B-rep geometry, from surfaces to solids, with OpenCASCADE (OCP) + VTK.
+# OCP: From Surfaces to Solids
+
+Learning [OpenCASCADE](https://www.opencascade.com/) (OCCT) through its Python
+bindings [**OCP**](https://github.com/CadQuery/OCP), with one concrete goal:
+
+> **Build B-rep surfaces and solids in code and render them** — from a single
+> plane to a full trimmed, watertight solid.
+
+The rendering side is already solved by [`vis.py`](vis.py), which meshes any
+OCCT shape and draws it with VTK. The thing this repo teaches is the **missing
+middle**: turning surface and boundary definitions (frames, curves, knots) into
+trimmed `TopoDS_Face`s — and sewing those into watertight `TopoDS_Solid`s — that
+`vis.show()` can display, up to a full, real mechanical part.
+
+All examples use **hard-coded values** — no model files are parsed, so you can
+learn the API in isolation.
+
+## Repo layout
+
+| Path                                   | What it is                                                            |
+| -------------------------------------- | --------------------------------------------------------------------- |
+| [`course/`](course/)                   | The learning course — start at [`course/README.md`](course/README.md) |
+| [`vis.py`](vis.py)                     | `vis.show(shape)` — meshes a shape and renders it in a VTK window     |
+| [`hello.py`](hello.py)                 | Smallest possible example: make a cylinder primitive, show it         |
+| [`requirements.txt`](requirements.txt) | `cadquery-ocp`, stubs, and `vtk`                                      |
+
+## Setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Verify everything works — this opens an interactive 3D window with a cylinder:
+
+```bash
+python hello.py
+```
+
+Rotate with the mouse (trackball controls), scroll to zoom, `q` to quit.
+
+## The course
+
+A 15-unit course (plus two appendices) takes you from your first face to a full
+trimmed **solid** — surfaces, curves, trimming, pcurves, intersections, NURBS,
+then sewing, solids, and booleans. It all lives in [`course/`](course/) and uses
+only hard-coded values.
+
+**→ Start at [`course/README.md`](course/README.md)** — it has the full unit
+list, the 4-step pipeline every unit follows, the appendices, and the
+run-it-yourself conventions.
